@@ -1,11 +1,10 @@
-package at.ydd.games.firstgame;
+package at.ydd.games.basics.rectangles;
 
 import org.newdawn.slick.*;
-import org.newdawn.slick.tests.AnimationTest;
 
 public class Rectangles extends BasicGame {
-    private float x;
-    private float y;
+    private float xRec;
+    private float yRec;
     private float speed;
 
     public Rectangles(String title) {
@@ -14,25 +13,26 @@ public class Rectangles extends BasicGame {
 
     @Override
     public void init(GameContainer gameContainer) throws SlickException {
-        this.x = 100;
+        this.xRec = 100;
         this.speed = 2.0f;
     }
 
     @Override
     public void update(GameContainer gameContainer, int delta) throws SlickException {
-        this.x += (float)delta/this.speed;
-        this.y += delta;
+        this.xRec += (float)delta/this.speed;
+        this.yRec += delta;
 
-        if (this.x>800){
-            this.x=0;
-            this.y=0;
+
+        if (this.xRec>700){
+            this.xRec=0;
+            this.yRec=0;
         }
     }
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
-        graphics.drawRect(this.x, this.y, 100, 100);
-        graphics.drawString("Hello World!", 50, 50);
+        graphics.drawRect(this.xRec, this.yRec, 100, 100);
+        graphics.drawString("Hello you!", 50, 50);
     }
 
     public static void main(String[] argv) {
