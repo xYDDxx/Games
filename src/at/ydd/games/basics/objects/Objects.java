@@ -19,6 +19,10 @@ public class Objects extends BasicGame {
 
     private DirectionEl directionEl = DirectionEl.RIGHT;
 
+    private enum DirectionCir {UP, DOWN}
+
+    private DirectionCir directionCir = DirectionCir.DOWN;
+
     public Objects(String title) {
         super(title);
     }
@@ -29,6 +33,8 @@ public class Objects extends BasicGame {
         this.yRec = 100;
         this.xel = 50;
         this.yel = 5;
+        this.xcir = 10;
+        this.ycir = 10;
         this.speed = 3.0f;
     }
 
@@ -59,28 +65,37 @@ public class Objects extends BasicGame {
 
         if (directionEl == DirectionEl.RIGHT) {
             this.xel += (float) delta / this.speed;
-            System.out.println("right");
             if (this.xel > 700) {
                 directionEl = DirectionEl.LEFT;
             }
-            if (directionEl == DirectionEl.LEFT) {
-                System.out.println("left");
-                this.xel -= (float) delta / this.speed;
-                System.out.println("left");
-                if (this.xel < 100) {
-                    directionEl = DirectionEl.RIGHT;
-                }
+        } else if (directionEl == DirectionEl.LEFT) {
+            this.xel -= (float) delta / this.speed;
+            if (this.xel < 100) {
+                directionEl = DirectionEl.RIGHT;
             }
         }
 
 
+        if (directionCir == DirectionCir.DOWN) {
+            this.ycir += (float) delta / this.speed;
+            if (this.ycir > 500) {
+                directionCir = DirectionCir.UP;
+            }
+        } else if (directionCir == DirectionCir.UP) {
+            this.ycir -= (float) delta / this.speed;
+            if (this.ycir < 10) {
+                directionCir = DirectionCir.DOWN;
+            }
+        }
     }
+
 
     @Override
     public void render(GameContainer gameContainer, Graphics graphics) throws SlickException {
         graphics.drawRect(this.xRec, this.yRec, 100, 100);
         graphics.drawOval(this.xel, this.yel, 80, 20);
-        graphics.drawString("Hello you!", 50, 50);
+        graphics.drawOval(this.xcir, this.ycir, 70, 70);
+        graphics.drawString("Hello you!", 40, 40);
     }
 
     public static void main(String[] argv) {
