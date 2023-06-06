@@ -16,12 +16,12 @@ public class Rectangle {
     }
 
     public void render(Graphics graphics) {
-        graphics.drawRect(this.x, this.y, 50, 50);
+        graphics.drawRect(this.x, this.y, 20, 20);
     }
 
     public void update(int delta) {
         this.x += (float)delta/this.speed;
-        if(this.x>600){
+        if(this.x>800){
             this.x = 0;
         }
     }
