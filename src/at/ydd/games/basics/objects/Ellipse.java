@@ -2,28 +2,27 @@ package at.ydd.games.basics.objects;
 
 import org.newdawn.slick.Graphics;
 
-public class Rectangle implements Actor{
-    private int x;
-    private int y;
+public class Ellipse implements Actor {
+    private float x, y;
     private float speed;
 
-    private enum Direction {RIGHT, DOWN, LEFT, UP}
-
-    public Rectangle(int x, int y, float speed) {
+    public Ellipse(float x, float y) {
         this.x = x;
         this.y = y;
-        this.speed = speed;
+        this.speed = 5;
     }
 
+    @Override
     public void render(Graphics graphics) {
-        graphics.drawRect(this.x, this.y, 20, 20);
+        graphics.drawOval(this.y,this.y,50,10);
     }
 
+    @Override
     public void update(int delta) {
         this.x += (float)delta/this.speed;
-        if(this.x>800){
+        this.y += (float)delta/this.speed;
+        if(this.y>800){
             this.x = 0;
         }
     }
-
 }
